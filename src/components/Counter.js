@@ -14,11 +14,17 @@ class ComponentCounter extends React.Component {
   }
 }
 
+const useCounter = () => {
+  const [count, setCount] = useState(0);
+  const increment = () => setCount(count + 1);
+
+  return { count, increment };
+};
+
 // https://egghead.io/lessons/react-use-the-usestate-react-hook?pl=react-hooks-and-suspense-650307f2
 const UseStateCounter = () => {
-  const [count, setCount] = useState(0);
-
-  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+  const { count, increment } = useCounter();
+  return <button onClick={increment}>{count}</button>;
 };
 
 export { ComponentCounter, UseStateCounter };
